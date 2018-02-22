@@ -13,13 +13,23 @@
 </head>
 <body>
 <div id="app">
-    <div>
-        <input type="text" v-model="input">
+    <div id="headerArea">
+        <div class="title">
+
+            ToDo
+            <span class="info">({{ todos.length }})</span>
+        </div>
+        <div class="input">
+        <input type="text" class="textin" v-model="input" >
         <button type="button" v-on:click="addTodo" class="btn btn-info">送信</button>
+        </div>
     </div>
     <ul>
+        <hr>
+        <li class="message" v-show="!todos.length">You are free!</li>
         <li v-for="(todo, index) in todos" >
             <todo-item   v-bind:todo="todo"  v-on:remove= "todos.splice(index, 1)"  ></todo-item>
+            <hr>
         </li>
     </ul>
 </div>

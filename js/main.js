@@ -6,9 +6,9 @@ Vue.component('todo-item', {
         }
     },
     template: '<div>' +
-    '<input type="checkbox" v-model="todo.completed">'  +
-    '<span>{{ todo.text }}</span>'  +
     '<button type="button" v-on:click="onClickRemove" class="btn-danger">削除</button>' +
+    '<input type="button" class="toggle" name="toggle" value="未完のタスク" onclick="dspmsg(this)" />' +
+    '<span :class="{done: todo.completed}">{{ todo.text }}</span>'  +
     '</div>',
 
     methods: {
@@ -23,11 +23,10 @@ var vm = new Vue({
     data: {
         input: ' ',
         todos: [
-            { completed: true, text: ''},
-            { completed: false, text: '' }
+            { completed: false, text: 'テストメッセージ'},
         ]
     },
-
+///////////////////////////////////////ローカルストレージ////////////////////////////////////////////
     watch: {
         todos: {
             handler: function() {
@@ -36,10 +35,10 @@ var vm = new Vue({
             deep: true
         }
     },
-
     mounted: function() {
         this.todos = JSON.parse(localStorage.getItem('todos')) || [];
     },
+/////////////////////////////////////////////////////////////////////////////////
 
     methods: {
         addTodo: function () {
@@ -51,3 +50,9 @@ var vm = new Vue({
         }
     }
 });
+
+function dspmsg(btnObject){
+    btnObject.value = btnObject.value=="完了したタスク"?"未完のタスク":"完了したタスク";
+}
+
+
