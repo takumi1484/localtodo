@@ -21,7 +21,7 @@ Vue.component('todo-item', {
 var vm = new Vue({
     el: '#app',
     data: {
-        input: ' ',
+        input: '',
         todos: [
             { completed: false, text: 'テストメッセージ'},
         ]
@@ -42,11 +42,12 @@ var vm = new Vue({
 
     methods: {
         addTodo: function () {
+            if(this.input !== ''){
             this.todos.push({
                 completed: false,
                 text: this.input
-            })
-            this.input = ' '
+            })}else{alert("タスクを入力してください")}
+            this.input = ''
         }
     }
 });
