@@ -88,4 +88,12 @@ span.done {
  text-decoration: line-through;
  color: #bbb;
 }
+#all{
+ position: absolute;
+ top: 30px;
+ right: 35px;
+}
 
+#text{
+  margin-left: 20px;
+}

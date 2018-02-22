@@ -8,7 +8,7 @@ Vue.component('todo-item', {
     template: '<div>' +
     '<button type="button" v-on:click="onClickRemove" class="btn-danger">削除</button>' +
     '<input v-on:click="test" type="button" class="toggle" name="toggle" value="未完のタスク" onclick="dspmsg(this)" />' +
-    '<span :class="{done: todo.completed}">{{ todo.text }}</span>'  +
+    '<span id="text" :class="{done: todo.completed}">{{ todo.text }}</span>'  +
     '</div>',
 
     methods: {
@@ -55,6 +55,19 @@ var vm = new Vue({
                 text: this.input
             })}else{alert("タスクを入力してください")}
             this.input = ''
+        },
+        purge: function() {
+            if (!confirm('完了状態のタスクをすべて削除します')) {
+                return;
+            }
+            this.todos = this.remaining;
+        }
+    },
+    computed: {
+        remaining: function() {
+            return this.todos.filter(function(todo) {
+                return !todo.completed;
+            });
         }
     }
 });
