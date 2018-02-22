@@ -20,7 +20,7 @@
             <span class="info">({{ todos.length }})</span>
         </div>
         <div class="input">
-        <input type="text" class="textin" v-model="input" >
+        <input type="text" class="textin" v-model="input"  v-on:keyup.enter="addTodo(input)">
         <button type="button" v-on:click="addTodo" class="btn btn-info">送信</button>
         </div>
     </div>

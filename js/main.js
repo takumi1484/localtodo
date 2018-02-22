@@ -7,13 +7,20 @@ Vue.component('todo-item', {
     },
     template: '<div>' +
     '<button type="button" v-on:click="onClickRemove" class="btn-danger">削除</button>' +
-    '<input type="button" class="toggle" name="toggle" value="未完のタスク" onclick="dspmsg(this)" />' +
+    '<input v-on:click="test" type="button" class="toggle" name="toggle" value="未完のタスク" onclick="dspmsg(this)" />' +
     '<span :class="{done: todo.completed}">{{ todo.text }}</span>'  +
     '</div>',
 
     methods: {
         onClickRemove: function () {
             this.$emit('remove')
+        },
+        test: function () {
+            if(check=== "未完のタスク"){
+                this.todo.completed = false
+            }else{
+                this.todo.completed = true
+            }
         }
     }
 });
@@ -51,9 +58,10 @@ var vm = new Vue({
         }
     }
 });
-
+let check;
 function dspmsg(btnObject){
     btnObject.value = btnObject.value=="完了したタスク"?"未完のタスク":"完了したタスク";
+    check = btnObject.value;
 }
 
 
